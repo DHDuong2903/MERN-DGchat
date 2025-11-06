@@ -34,7 +34,7 @@ const groupSchema = new mongoose.Schema(
 const lastMessageSchema = new mongoose.Schema(
   {
     _id: {
-      type: string,
+      type: mongoose.Schema.Types.ObjectId,
     },
     content: {
       type: String,
@@ -59,7 +59,7 @@ const conversationSchema = new mongoose.Schema(
       enum: ["direct", "group"],
       required: true,
     },
-    paticipants: {
+    participants: {
       type: [participantSchema],
       required: true,
     },
