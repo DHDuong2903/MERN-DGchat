@@ -8,6 +8,4 @@ export const authMe = (req, res) => {
   }
 };
 
-export const test = (req, res) => {
-  return res.sendStatus(204);
-};
+

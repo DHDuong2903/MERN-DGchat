@@ -8,6 +8,7 @@ import authRouter from "./routes/authRoute.js";
 import userRouter from "./routes/userRoute.js";
 import friendRouter from "./routes/friendRoute.js";
 import messageRouter from "./routes/messageRoute.js";
+import conversationRouter from "./routes/conversationRoute.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(protectRoute);
 app.use("/api/users", userRouter);
 app.use("/api/friends", friendRouter);
 app.use("/api/messages", messageRouter);
+app.use("/api/conversations", conversationRouter);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
