@@ -1,0 +1,18 @@
+import express from "express";
+import {
+  acceptFriendRequest,
+  declineFriendRequest,
+  getAllFriends,
+  getFriendRequests,
+  sendFriendRequest,
+} from "../controllers/friendController.js";
+
+const router = express.Router();
+
+router.post("/request", sendFriendRequest);
+router.post("/requests/:requestId/accept", acceptFriendRequest);
+router.post("/requests/:requestId/decline", declineFriendRequest);
+router.get("/", getAllFriends);
+router.get("/requests", getFriendRequests);
+
+export default router;

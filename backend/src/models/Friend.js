@@ -17,7 +17,7 @@ const friendSchema = new mongoose.Schema(
 );
 
 // tao khoa chinh de tranh trung lap ban be
-friendSchema.pre("save", (next) => {
+friendSchema.pre("save", function (next) {
   const a = this.userA.toString();
   const b = this.userB.toString();
 
