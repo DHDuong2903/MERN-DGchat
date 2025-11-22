@@ -1,5 +1,5 @@
 export interface User {
-  id: string;
+  _id: string;
   username: string;
   email: string;
   displayName: string;
@@ -8,4 +8,18 @@ export interface User {
   phone?: string;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface Friend {
+  _id: string;
+  username: string;
+  displayName: string;
+  avatarUrl?: string;
+}
+
+export interface FriendRequest {
+  _id: string;
+  username: string;
+  displayName: string;
+  avatarUrl?: string;
 }

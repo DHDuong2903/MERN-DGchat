@@ -40,28 +40,28 @@ export function SignInForm({ className, ...props }: React.ComponentProps<"div">)
       <Card>
         <CardHeader className="text-center">
           <img className="w-16 mx-auto" src="logo.png" alt="logo" />
-          <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Login to your account</CardDescription>
+          <CardTitle className="text-xl">Chào mừng quay lại</CardTitle>
+          <CardDescription>Đăng nhập vào tài khoản của bạn</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup className="gap-1">
               <Field>
-                <FieldLabel htmlFor="username">UserName</FieldLabel>
-                <Input id="username" type="text" placeholder="DgChat" {...register("username")} />
+                <FieldLabel htmlFor="username">Tên đăng nhập</FieldLabel>
+                <Input id="username" type="text" {...register("username")} />
                 {errors.username && <FieldError>{errors.username.message}</FieldError>}
               </Field>
               <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
                 <Input id="password" type="password" {...register("password")} />
                 {errors.password && <FieldError>{errors.password.message}</FieldError>}
               </Field>
               <Field>
                 <Button type="submit" disabled={isSubmitting}>
-                  Login
+                  Đăng nhập
                 </Button>
                 <FieldDescription className="text-center">
-                  Don't have an account? <a href="/signup">Sign up</a>
+                  Bạn chưa có tài khoản? <a href="/signup">Đăng ký</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
@@ -69,7 +69,8 @@ export function SignInForm({ className, ...props }: React.ComponentProps<"div">)
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        Bằng cách nhấp vào tiếp tục, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a> và{" "}
+        <a href="#">Chính sách bảo mật của chúng tôi</a>.
       </FieldDescription>
     </div>
   );

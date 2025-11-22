@@ -45,43 +45,43 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       <Card>
         <CardHeader className="text-center">
           <img className="w-16 mx-auto" src="logo.png" alt="logo" />
-          <CardTitle className="text-xl">Create DgChat account</CardTitle>
-          <CardDescription>Enter your email below to create your account</CardDescription>
+          <CardTitle className="text-xl">Đăng ký tài khoản Dgchat</CardTitle>
+          <CardDescription>Nhập các trường thông tin bên dưới để tạo</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup className="gap-2">
               <Field>
-                <FieldLabel htmlFor="firstName">FirstName</FieldLabel>
-                <Input id="firstName" type="text" placeholder="Duong" {...register("firstName")} />
+                <FieldLabel htmlFor="firstName">Tên đầu</FieldLabel>
+                <Input id="firstName" type="text" {...register("firstName")} />
                 {errors.firstName && <FieldError>{errors.firstName.message}</FieldError>}
               </Field>
               <Field>
-                <FieldLabel htmlFor="lastName">LastName</FieldLabel>
-                <Input id="lastName" type="text" placeholder="Do" {...register("lastName")} />
+                <FieldLabel htmlFor="lastName">Tên cuối</FieldLabel>
+                <Input id="lastName" type="text" {...register("lastName")} />
                 {errors.lastName && <FieldError>{errors.lastName.message}</FieldError>}
               </Field>
               <Field>
-                <FieldLabel htmlFor="username">UserName</FieldLabel>
-                <Input id="username" type="text" placeholder="DgChat" {...register("username")} />
+                <FieldLabel htmlFor="username">Tên đăng nhập</FieldLabel>
+                <Input id="username" type="text" {...register("username")} />
                 {errors.username && <FieldError>{errors.username.message}</FieldError>}
               </Field>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" type="email" placeholder="m@example.com" {...register("email")} />
+                <Input id="email" type="email" {...register("email")} />
                 {errors.email && <FieldError>{errors.email.message}</FieldError>}
               </Field>
               <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
                 <Input id="password" type="password" {...register("password")} />
                 {errors.password && <FieldError>{errors.password.message}</FieldError>}
               </Field>
               <Field>
                 <Button type="submit" disabled={isSubmitting}>
-                  Create Account
+                  Tạo tài khoản
                 </Button>
                 <FieldDescription className="text-center">
-                  Already have an account? <a href="/signin">Sign in</a>
+                  Bạn đã có tài khoản? <a href="/signin">Đăng nhập</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
@@ -89,7 +89,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        Bằng cách nhấp vào tiếp tục, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a> và{" "}
+        <a href="#">Chính sách bảo mật của chúng tôi</a>.
       </FieldDescription>
     </div>
   );

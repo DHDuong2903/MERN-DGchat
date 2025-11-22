@@ -8,7 +8,7 @@ const pair = (a, b) => {
 
 export const checkFriendship = async (req, res, next) => {
   try {
-    const me = req.user.id.toString();
+    const me = req.user._id.toString();
 
     const recipientId = req.body?.recipientId ?? null;
     const memberIds = req.body?.memberIds ?? [];
@@ -60,7 +60,7 @@ export const checkGroupMembership = async (req, res, next) => {
   try {
     const { conversationId } = req.body;
 
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     const conversation = await Conversation.findById(conversationId);
 

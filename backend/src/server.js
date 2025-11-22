@@ -9,10 +9,10 @@ import userRouter from "./routes/userRoute.js";
 import friendRouter from "./routes/friendRoute.js";
 import messageRouter from "./routes/messageRoute.js";
 import conversationRouter from "./routes/conversationRoute.js";
+import { app, server } from "./socket/index.js";
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -30,7 +30,7 @@ app.use("/api/messages", messageRouter);
 app.use("/api/conversations", conversationRouter);
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
 });

@@ -5,7 +5,7 @@ export const createConversation = async (req, res) => {
   try {
     const { type, name, memberIds } = req.body;
 
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     if (!type || (type === "group" && !name) || !memberIds || !Array.isArray(memberIds) || memberIds.length === 0) {
       return res.status(400).json({ message: "Ten nhom va danh sach thanh vien la bat buoc" });
@@ -26,6 +26,7 @@ export const createConversation = async (req, res) => {
         conversation = new Conversation({
           type: "direct",
           participants: [{ userId }, { userId: participantId }],
+          group: undefined,
           lastMessageAt: new Date(),
         });
 
@@ -65,7 +66,7 @@ export const createConversation = async (req, res) => {
 };
 export const getConversations = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     const conversations = await Conversation.find({
       "participants.userId": userId,
@@ -85,18 +86,18 @@ export const getConversations = async (req, res) => {
       });
 
     const formatted = conversations.map((convo) => {
-      const participants =
-        convo.participants ||
-        [].map((p) => ({
-          _id: p.userId?._id,
-          displayName: p.userId?.displayName,
-          avatarUrl: p.userId?.avatarUrl ?? null,
-          joinedAt: p.joinedAt,
-        }));
+      const participants = (convo.participants || []).map((p) => ({
+        _id: p.userId?._id,
+        displayName: p.userId?.displayName,
+        avatarUrl: p.userId?.avatarUrl ?? null,
+        joinedAt: p.joinedAt,
+      }));
+
       return {
         ...convo.toObject(),
         unreadCounts: convo.unreadCounts || {},
         participants,
+        group: convo.group || null,
       };
     });
 
@@ -136,5 +137,16 @@ export const getMessages = async (req, res) => {
   } catch (error) {
     console.log("Loi getMessages", error);
     return res.status(500).json({ message: "Loi he thong" });
+  }
+};
+
+export const getUserConversationForSocketIO = async (userId) => {
+  try {
+    const conversations = await Conversation.find({ "participants.userId": userId }, { _id: 1 });
+
+    return conversations.map((c) => c._id.toString());
+  } catch (error) {
+    console.log("Loi khi getUserConversationForSocketIO", error);
+    return [];
   }
 };
